@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM</title>
+    <link href="/css/embalerForm.css" rel="stylesheet" type="text/css">
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+</head>
+
+<body>
+    <h1>SUBMIT NEW EMBALMER</h1>
+    <form action="/embalmer" method="post" class="formbg">
+        <br>
+        <div class="stats">NAME</div>
+        <div class="row">
+            <label for="embalmerGivenName">Given Name</label>
+            <input type="text" id="embalmerGivenName" name="embalmerGivenName" class="form-control" placeholder="Juan">
+            <label for="embalmerMiddleName">Middle Name</label>
+            <input type="text" id="embalmerMiddleName" name="embalmerMiddleName" class="form-control"
+                placeholder="Martinez">
+            <label for="embalmerSurName">Surname</label>
+            <input type="text" id="embalmerSurName" name="embalmerSurName" class="form-control" placeholder="dela Cruz">
+        </div>
+
+        <br>
+        <div class="stats">ADDRESS</div>
+        <div class="row">
+            <label for="embalmerAddress1" class="hide">Address Line 1</label>
+            <input type="text" id="embalmerAddress1" name="embalmerAddress1" class="form-control"
+                placeholder="Manila, NCR">
+            <label for="embalmerAddress2" class="embalmerAddress2">Address Line 2</label>
+            <input type="text" id="embalmerAddress2" name="embalmerAddress2" class="form-control embalmerAddress2"
+                placeholder="Philippines">
+
+
+            <br>
+            <div class="stats"><label>TITLE / DESIGNATION</label></div>
+            <div class="row">
+                <input type="radio" id="Licensed Embalmer" name="embalmerDesignation" class="form-control"
+                    value="Licensed Embalmer">
+                <label for="Licensed Embalmer">Licensed Embalmer</label>
+                <input type="radio" id="Embalmer" name="embalmerDesignation" class="form-control" value="Embalmer">
+                <label for="Embalmer">Embalmer</label>
+            </div>
+
+            <br>
+            <div class="stats"><label>LICENSE INFORMATION</label></div>
+            <div class="row">
+                <label for="embalmerLicense">License Number</label>
+                <input type="text" id="embalmerLicense" name="embalmerLicense" class="form-control" placeholder="0000">
+                <label for="embalmerLicenseIssedAt">Issued at</label>
+                <input type="text" id="embalmerLicenseIssedAt" name="embalmerLicenseIssedAt" class="form-control"
+                    placeholder="Manila">
+
+                <label> Issued on <sub>(YYYY/MM/DD)</sub></label><br>
+                <label for="embalmerLicenseIssedOnYYYY"></label>
+                <input type="number" id="embalmerLicenseIssedOnYYYY" class="embalmerDate"
+                    name="embalmerLicenseIssedOnYYYY" class="form-control" placeholder="YYYY">
+                <label for="embalmerLicenseIssedOnMM">/</label>
+                <input type="number" id="embalmerLicenseIssedOnMM" class="embalmerDate" name="embalmerLicenseIssedOnMM"
+                    class="form-control" placeholder="MM" min="1" max="12">
+                <label for="embalmerLicenseIssedOnDD">/</label>
+                <input type="number" id="embalmerLicenseIssedOnDD" class="embalmerDate" name="embalmerLicenseIssedOnDD"
+                    class="form-control" placeholder="DD" min="1" max="31">
+
+                <label> Expiry Date <sub>(YYYY/MM/DD)</sub></label><br>
+                <label for="embalmerLicenseExpiryYYYY"></label>
+                <input type="number" id="embalmerLicenseExpiryYYYY" class="embalmerDate"
+                    name="embalmerLicenseExpiryYYYY" class="form-control" placeholder="YYYY">
+                <label for="embalmerLicenseExpiryMM">/</label>
+                <input type="number" id="embalmerLicenseExpiryMM" class="embalmerDate" name="embalmerLicenseExpiryMM"
+                    class="form-control" placeholder="MM" min="1" max="12">
+                <label for="embalmerLicenseExpiryDD">/</label>
+                <input type="number" id="embalmerLicenseExpiryDD" class="embalmerDate" name="embalmerLicenseExpiryDD"
+                    class="form-control" placeholder="DD">
+
+                <br>
+                <button type="submit"> SUMBIT </button>
+                <!-- <button> CLEAR </button> -->
+            </div>
+        </div>
+    </form>
+</body>
+
+</html>

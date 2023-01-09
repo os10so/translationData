@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM</title>
+</head>
+
+<body>
+    <form action="/DC/<%= data._id %>?_method=put" method="post">
+        <div class=stats>CHILD</div><br>
+        <div class="row">
+            <label for="childGivenName">Given Name</label>
+            <input type="text" id="childGivenName" name="childGivenName" class="form-control"
+                value=<%=data.childGivenName%> >
+            <label for="childMiddleName">Middle Name</label>
+            <input type="text" id="childMiddleName" name="childMiddleName" class="form-control"
+                value=<%=data.childMiddleName%>>
+            <label for="childSurName">Surname</label>
+            <input type="text" id="childSurName" name="childSurName" class="form-control" value=<%=data.childSurName%>>
+        </div>
+
+        <button type="submit"> SUMBIT </button>
+        <!-- <button> CLEAR </button> -->
+    </form>
+
+</body>
+
+</html>

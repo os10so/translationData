@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHECK</title>
+    <link href="/css/embalerForm.css" rel="stylesheet" type="text/css">
+</head>
+
+<!-- <h1>FIRST NAME: <%= data.embalmerGivenName %> </h1> -->
+
+<body>
+    <div class="navBar">
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/embalmer">Embalmer</a></li>
+                <li class="hide"><a href="/">TBD</a></li>
+                <li class="hide"><a href="/">TBD</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div action="/embalmer" method="post" class="formbg">
+
+        <!-- <h2>ENTRY SUBMITTED</h2> -->
+        <h6>ENTRY ID: <%= data._id %>
+        </h6>
+
+        <div class="stats">NAME</div>
+        <div class="row">
+            <label for="embalmerGivenName">Given Name</label>
+            <div type="text" id="embalmerGivenName" name="embalmerGivenName" class="boxData">
+                <%= data.embalmerGivenName %>
+            </div>
+            <label for="embalmerMiddleName">Middle Name</label>
+            <div type="text" id="embalmerMiddleName" name="embalmerMiddleName" class="boxData">
+                <%= data.embalmerMiddleName %>
+            </div>
+            <label for="embalmerSurName">Surname</label>
+            <div type="text" id="embalmerSurName" name="embalmerSurName" class="boxData">
+                <%= data.embalmerSurName %>
+            </div>
+        </div>
+
+        <br>
+        <div class="stats">ADDRESS</div>
+        <div class="row">
+            <label for="embalmerAddress1" class="hide">Address Line 1</label>
+            <div type="text" id="embalmerAddress1" name="embalmerAddress1" class="boxData">
+                <%= data.embalmerAddress1 %>
+            </div>
+            <label for="embalmerAddress2" class="embalmerAddress2">Address Line 2</label>
+            <div type="text" id="embalmerAddress2" name="embalmerAddress2" class="boxData embalmerAddress2">
+                <%= data.embalmerAddress2 %>
+            </div>
+            <br>
+
+            <div class="stats"><label>TITLE / DESIGNATION</label></div>
+            <div class="row">
+                <input type="radio" id="Licensed Embalmer" name="embalmerDesignation" class="form-control"
+                    value="Licensed Embalmer"  <%= (data.embalmerDesignation === "Licensed Embalmer") ? "checked" : "" %>>
+                <label for="Licensed Embalmer">Licensed Embalmer</label>
+                <input type="radio" id="Embalmer" name="embalmerDesignation" class="form-control" value="Embalmer" <%= (data.embalmerDesignation === "Embalmer") ? "checked" : "" %>>
+                <label for="Embalmer">Embalmer</label>
+            </div>
+
+            <br>
+            <div class="stats"><label>LICENSE INFORMATION</label></div>
+            <div class="row">
+                <label for="embalmerLicense">License Number</label>
+                <div type="text" id="embalmerLicense" name="embalmerLicense" class="boxData">
+                    <%= data.embalmerLicense %>
+                </div>
+                <label for="embalmerLicenseIssedAt">Issued at</label>
+                <div type="text" id="embalmerLicenseIssedAt" name="embalmerLicenseIssedAt" class="boxData">
+                    <%= data.embalmerLicenseIssedAt %>
+                </div>
+                <label> Issued on <sub>(YYYY/MM/DD)</sub></label><br>
+                <label for="embalmerLicenseIssedOnYYYY"></label>
+                <div type="number" id="embalmerLicenseIssedOnYYYY" class="embalmerDate boxData"
+                    name="embalmerLicenseIssedOnYYYY">
+                    <%= data.embalmerLicenseIssedOnYYYY %>
+                </div>
+                <label for="embalmerLicenseIssedOnMM">/</label>
+                <div type="number" id="embalmerLicenseIssedOnMM" class="embalmerDate boxData"
+                    name="embalmerLicenseIssedOnMM">
+                    <%= data.embalmerLicenseIssedOnMM %>
+                </div>
+                <label for="embalmerLicenseIssedOnDD">/</label>
+                <div type="number" id="embalmerLicenseIssedOnDD" class="embalmerDate boxData"
+                    name="embalmerLicenseIssedOnDD">
+                    <%= data.embalmerLicenseIssedOnDD %>
+                </div>
+
+                <label> Expiry Date <sub>(YYYY/MM/DD)</sub></label><br>
+                <label for="embalmerLicenseExpiryYYYY"></label>
+                <div type="number" id="embalmerLicenseExpiryYYYY" class="embalmerDate boxData"
+                    name="embalmerLicenseExpiryYYYY">
+                    <%= data.embalmerLicenseExpiryYYYY %>
+                </div>
+                <label for="embalmerLicenseExpiryMM">/</label>
+                <div type="number" id="embalmerLicenseExpiryMM" class="embalmerDate boxData"
+                    name="embalmerLicenseExpiryMM">
+                    <%= data.embalmerLicenseExpiryMM %>
+                </div>
+                <label for="embalmerLicenseExpiryDD">/</label>
+                <div type="number" id="embalmerLicenseExpiryDD" class="embalmerDate boxData"
+                    name="embalmerLicenseExpiryDD">
+                    <%= data.embalmerLicenseExpiryDD %>
+                </div>
+
+                <a href="/embalmer/<%= data._id %>/edit"><button>EDIT</button></a>
+                <form action="/embalmer/<%= data._id %>?_method=delete" method="post">
+                    <button>DELETE</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

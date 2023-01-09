@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHECK</title>
+</head>
+
+<body>
+    <h2>id: <%= data._id %> </h2>
+    <h1>FIRST NAME: <%= data.childGivenName %> </h1>
+    
+    <button><a href="/DC/<%= data._id %>/edit"> EDIT</a></button>
+    
+    <form action="/DC/<%= data._id %>?_method=delete" method="post">
+        <button>DELETE</button>
+    </form>
+
+</body>
+</html>

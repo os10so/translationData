@@ -1,0 +1,166 @@
+/* //https://codepen.io/stack-findover/pen/OJRvPQv */
+/* https://freefrontend.com/css-forms/ */
+.formbg {
+    margin: 0px auto;
+    padding: 8px 16px;
+    width: 100%;
+    max-width: 448px;
+    background: white;
+    border-radius: 4px;
+    box-shadow: rgba(60, 66, 87, 0.12) 0px 7px 14px 0px, rgba(0, 0, 0, 0.12) 0px 3px 6px 0px;
+}
+
+.stats {
+    margin-top: 3px;
+    font-size: 24px;
+    font-weight: 600;
+    color: #979898;
+}
+
+.row {
+    margin: 0px;
+    padding: 0px;
+}
+
+.embalmerAddress2 {
+    display: none;
+}
+
+.hide {
+    display: none;
+}
+
+label {
+    margin-top: 5px;
+    display: inline-block;
+}
+
+input,
+div[type='text'] {
+    font-size: 16px;
+    line-height: 28px;
+    padding: 4px 8px;
+    width: 100%;
+    min-height: 25px;
+    border: unset;
+    border-radius: 10px;
+    box-shadow: rgba(60, 66, 87, 0.16) 0px 0px 0px 1px;
+    box-sizing: border-box;
+}
+
+input[type=radio] {
+    width: 10%;
+    min-height: 16px;
+    box-shadow: none;
+    /* padding: 0px 0px; */
+    margin: 8px 0;
+}
+
+button {
+    appearance: none;
+    background-color: #007bff;
+    border: 2px solid #007bff;
+    border-radius: 15px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    font-family: Roobert, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    font-size: 16px;
+    font-weight: 600;
+    line-height: normal;
+    margin-top: 16px;
+    min-height: 60px;
+    min-width: 0;
+    outline: none;
+    padding: 16px 24px;
+    text-align: center;
+    text-decoration: none;
+    transition: all 300ms cubic-bezier(.23, 1, 0.32, 1);
+    user-select: none;
+    -webkit-user-select: none;
+    touch-action: manipulation;
+    width: 100%;
+    will-change: transform;
+}
+
+button:hover {
+    box-shadow: rgba(0, 0, 0, 0.50) 0 8px 15px;
+    transform: translateY(-5px);
+}
+
+button:active {
+    box-shadow: none;
+    transform: translateY(0);
+}
+
+h1,
+h2,
+h6 {
+    text-align: center;
+    margin: 0;
+}
+
+
+.boxData {
+    font-size: 16px;
+    line-height: 28px;
+    padding: 4px 8px;
+    width: 100%;
+    min-height: 32px;
+    border: unset;
+    border-radius: 10px;
+    box-shadow: rgba(60, 66, 87, 0.16) 0px 0px 0px 1px;
+    box-sizing: border-box;
+}
+
+.embalmerDate {
+    display: inline-block;
+    width: 31%;
+    min-width: 31%;
+}
+
+
+.navBar {
+    background-color: #007bff;
+    display: inline-flexbox;
+    padding: 0px;
+}
+
+ul {
+    display: block;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+nav li {
+    float: left;
+    border-right: 1px solid white;
+    width: 100px;
+}
+
+nav li:last-child {
+    border-right: none;
+}
+
+nav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+nav li a:hover {
+    background-color: #185fac;
+}
+
+table{
+    margin: 0px auto;
+}
+
+th{
+    padding: 0px 10px;
+}

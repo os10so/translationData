@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FORM</title>
+</head>
+
+<body>
+    <form action="/DC" method="post">
+        <br>
+      
+        <div class="stats"><label for="dateSubmitted">DATE TODAY</label></div>
+        <div class="row">
+            <input type="date" id="dateSubmitted" name="dateSubmitted" value="<%= dateToday.year %>-<%= dateToday.month %>-<%=dateToday.day%>">
+        </div> 
+
+        <br>
+        <div class="stats">1.NAME</div>
+        <div class="row">
+            <label for="childGivenName">Given Name</label>
+            <input type="text" id="childGivenName" name="childGivenName" class="form-control" placeholder="Juan">
+            <label for="childMiddleName">Middle Name</label>
+            <input type="text" id="childMiddleName" name="childMiddleName" class="form-control"
+                placeholder="Martinez">
+            <label for="childSurName">Surname</label>
+            <input type="text" id="childSurName" name="childSurName" class="form-control" placeholder="dela Cruz">
+        </div> 
+
+        <br>
+        <div class="stats"><label for="male">2.SEX</label></div>
+        <div class="row">
+            <input type="radio" id="male" name="sex" class="form-control" placeholder="Male">
+            <label for="male">Male</label>
+            <input type="radio" id="female" name="sex" class="form-control" placeholder="Female">      
+            <label for="female">Female</label>
+        </div> 
+
+        <br>
+        <div class="stats"><label for="deathday">3.DATE OF DEATH</label></div>
+        <div class="row">
+            <input type="date" id="deathday" name="deathday" placeholder="12/31/1980">
+        </div>
+
+        <br>
+        <div class="stats"><label for="birthday">4.DATE OF BIRTH</label></div>
+        <div class="row">
+            <input type="date" id="birthday" name="birthday" placeholder="12/31/1980">
+        </div> 
+                        
+        <br>
+        <div class="stats">5.AGE AT THE TIME OF DEATH</div>
+        <div class="row">
+            <input type="date" id="deathAge" name="deathAge">
+        </div> 
+
+        <br>
+        <div class="stats"><label for="deathplace">6.PLACE OF DEATH</label></div>
+        <div class="row">
+            <input type="text" id="deathplace" name="deathplace">
+        </div> 
+
+        <br>
+        <div class="stats"><label for="civilStatus">7.CIVIL STATUS</label></div>
+        <div class="row">            
+            <select name="civilStatus" id="civilStatus">
+                <option value="">--Please choose an option--</option>
+                <option value="single">Single</option>
+                <option value="married">Married</option>
+                <option value="widow">Widow</option>
+                <option value="widower">Widower</option>
+                <option value="annulled">Annulled</option>
+                <option value="divorced">Divorced</option>
+            </select>
+        </div>
+        <br>
+        <div class="stats"><label for="religion">9.RELIGION/RELIGIOUS SECTOR</label></div>
+        <div class="row">            
+            <select name="religion" id="religion">
+                <option value="">-Please choose an option-</option>
+                <option value="catholic">Catholic</option>
+                <option value="romanCatholic">Roman Catholic</option>
+                <option value="penecostes">Penecostes</option>
+                <option value="iglesiaNiCristo">Iglesia Ni Cristo (INC)</option>
+            </select>
+        </div> 
+
+        <br>
+        <div class="stats"><label for="residence">10.RESIDENCE</label></div>
+        <div class="row">
+            <input type="text" id="residence" name="residence">
+        </div> 
+        
+        <br>
+        <div class="stats"><label for="occupation">11.OCCUPATION</label></div>
+        <div class="row">
+            <input type="text" id="occupation" name="occupation">
+        </div> 
+
+        <br>
+        <div class="stats"><label for="fatherName">12.NAME OF FATHER</label></div>
+        <div class="row">
+            <input type="text" id="fatherName" name="fatherName">
+        </div> 
+
+        <br>
+        <div class="stats"><label for="motherName">13.MAIDEN NAME OF MOTHER</label></div>
+        <div class="row">
+            <input type="text" id="motherName" name="motherName">
+        </div> 
+
+
+        <button type="submit"> SUMBIT </button>
+        <!-- <button> CLEAR </button> -->
+
+    </form>
+</body>
+
+</html>
