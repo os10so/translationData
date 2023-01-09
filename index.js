@@ -22,6 +22,8 @@ const bodyParser = require("body-parser");
 // DATABASE - BIRTH CERTIFICATE FORMAT XX
 // 
 
+DB_URL = "mongodb+srv://" + userName + ":" + password + "@cluster0.yyhs4yx.mongodb.net/" + dbName;
+
 // mongoose.connect("mongodb://localhost:27017/testData", { useNewUrlParser: true })
 mongoose.connect(DB_URL, { useNewUrlParser: true })
     .then(() => {
