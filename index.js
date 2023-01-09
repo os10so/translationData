@@ -1,11 +1,11 @@
-
-
 const express = require("express");
 const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
 const dbUrl = process.env.DB_URL;
+
+require("dotenv").config(); //for .env file access
 
 
 const DCdata = require('./models/products');
@@ -21,7 +21,12 @@ const bodyParser = require("body-parser");
 
 // DATABASE - BIRTH CERTIFICATE FORMAT XX
 
-DB_URL = "mongodb+srv://" + userName + ":" + password + "@cluster0.yyhs4yx.mongodb.net/" + dbName;
+DB_URL = "mongodb+srv://" + process.env.mongoUserName + ":" + process.env.password + "@cluster0.yyhs4yx.mongodb.net/" + process.env.dbName;
+console.log(DB_URL);
+// password = "dH1j7FCsHT8JXcaC";
+// dbName = "Translation"
+// userName = "os10so";
+// DB_URL = "mongodb+srv://" + userName + ":" + password + "@cluster0.yyhs4yx.mongodb.net/" + dbName;
 
 // mongoose.connect("mongodb://localhost:27017/testData", { useNewUrlParser: true })
 mongoose.connect(DB_URL, { useNewUrlParser: true })
@@ -209,5 +214,5 @@ app.delete('/embalmer/:id', async(req,res)=>{
 const port = process.env.PORT || 3000;
 
 app.listen(port, () => {
-    console.log(`listening to port $[port}`);
+    console.log(`listening to port ${port}`);
 })
