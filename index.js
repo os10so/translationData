@@ -1,6 +1,4 @@
-// if (process.env.NODE_ENV !== "PRODUCTION"){
-//     require('dotENV').config();
-// }
+
 
 const express = require("express");
 const app = express();
@@ -23,10 +21,6 @@ const bodyParser = require("body-parser");
 
 // DATABASE - BIRTH CERTIFICATE FORMAT XX
 // 
-
-password = "dH1j7FCsHT8JXcaC";
-dbName = "Translation"
-DB_URL = "mongodb+srv://os10so:"+password+"@cluster0.yyhs4yx.mongodb.net/"+dbName;
 
 // mongoose.connect("mongodb://localhost:27017/testData", { useNewUrlParser: true })
 mongoose.connect(DB_URL, { useNewUrlParser: true })
@@ -206,6 +200,13 @@ app.delete('/embalmer/:id', async(req,res)=>{
 //     res.send(`ONE Description <br> Austin is ${adj1}.`)
 // })
 
-app.listen(3000, () => {
-    console.log("listening to port 3000");
+
+// if (process.env.NODE_ENV !== "PRODUCTION"){
+//     require('dotENV').config();
+// }
+
+const port = process.env.PORT || 3000;
+
+app.listen(port, () => {
+    console.log(`listening to port $[port}`);
 })
