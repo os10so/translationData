@@ -20,7 +20,6 @@ const bodyParser = require("body-parser");
 // })
 
 // DATABASE - BIRTH CERTIFICATE FORMAT XX
-// 
 
 DB_URL = "mongodb+srv://" + userName + ":" + password + "@cluster0.yyhs4yx.mongodb.net/" + dbName;
 
