@@ -5,17 +5,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/css/embalerForm.css" rel="stylesheet" type="text/css">
+    <link href="/css/embaler.css" rel="stylesheet" type="text/css">
     <title>LIST</title>
 </head>
 
 <body>
+    <%- include('partials/header.ejs') %>
     <h1>EMBALMER LIST</h1>
-    <%= date %>
-        <a href="/"> <button>HOME</button> </a>
-        <a href="/embalmer/new"> <button>NEW ENTRY</button> </a>
+    <a href="/"> <button class="submitbutton">HOME</button> </a>
+    <a href="/embalmer/new"> <button class="submitbutton">NEW ENTRY</button> </a>
 
-        <!-- <ul>
+    <!-- <ul>
             <% for(let data of datas) {%>
                 <li> 
                     <a href='/embalmer/<%=data._id%>'>
@@ -30,49 +30,55 @@
             <%}%>
         </ul> -->
 
-        <table>
-            <tr>
-                <th>Name</th>
-                <th>Address</th>
-                <th>Designation</th>
-                <th>License No.</th>
-                <th>Issued on<br><sub>(YYYY/MM/DD)</sub></th>
-                <th>Issued at</th>
-                <th>Expiray Date<br><sub>(YYYY/MM/DD)</sub></th>
-                <th>Edit</th>
-            </tr>
+    <table>
+        <tr>
+            <th>Name</th>
+            <th>Address</th>
+            <th>Designation</th>
+            <th>License No.</th>
+            <th>Issued on<br><sub>(YYYY/MM/DD)</sub></th>
+            <th>Issued at</th>
+            <th>Expiray Date<br><sub>(YYYY/MM/DD)</sub></th>
+            <th>Edit</th>
 
-            <% for(let data of datas) {%>
-                <tr>
-                    <td>
-                        <%=data.embalmerGivenName%>
-                            <%=data.embalmerMiddleName%>
-                                <%=data.embalmerSurName%>
-                    </td>
-                    <td>
-                        <%=data.embalmerAddress1%>
-                            <%=data.embalmerAddress2%>
-                    </td>
-                    <td>
-                        <%=data.embalmerDesignation%>
-                    </td>
-                    <td>
-                        <%=data.embalmerLicense%>
-                    </td>
-                    <td>
-                        <%=data.embalmerLicenseIssedOnYYYY%>/<%= ('0' + (data.embalmerLicenseIssedOnMM)).slice(-2)%>/
-                                <%= ('0' + (data.embalmerLicenseIssedOnDD)).slice(-2)%>
-                    </td>
-                    <td>
-                        <%=data.embalmerLicenseIssedAt%>
-                    </td>
-                    <td>
-                        <%= data.embalmerLicenseExpiryYYYY%>/<%= ('0' + (data.embalmerLicenseExpiryMM)).slice(-2)%>/
-                                <%= ('0' + (data.embalmerLicenseExpiryDD)).slice(-2)%>
-                    </td>
-                    <td><a href="embalmer/<%=data._id%>">edit</a></td>
-                </tr>
-                <%}%>
-        </table>
+        </tr>
+
+        <% for(let data of datas) {%>
+            <tr>
+                <td>
+                    <%=data.embalmerGivenName%>
+                        <%=data.embalmerMiddleName%>
+                            <%=data.embalmerSurName%>
+                </td>
+                <td>
+                    <%=data.embalmerAddress1%>
+                        <%=data.embalmerAddress2%>
+                </td>
+                <td>
+                    <%=data.embalmerDesignation%>
+                </td>
+                <td>
+                    <%=data.embalmerLicense%>
+                </td>
+                <td>
+                    <%=data.embalmerLicenseIssedOnYYYY===null ? "xxxx" : data.embalmerLicenseIssedOnYYYY%> / <%=
+                            data.embalmerLicenseIssedOnMM===null ? "xx" : ('0' +
+                            (data.embalmerLicenseIssedOnMM)).slice(-2)%> / <%=data.embalmerLicenseIssedOnDD===null
+                                ? "xx" : ('0' + (data.embalmerLicenseIssedOnDD)).slice(-2)%>
+                </td>
+                <td>
+                    <%=data.embalmerLicenseIssedAt%>
+                </td>
+                <td>
+                    <%=data.embalmerLicenseExpiryYYYY===null ? "xxxx" : data.embalmerLicenseExpiryYYYY%> / <%=
+                            data.embalmerLicenseExpiryMM===null ? "xx" : ('0' +
+                            (data.embalmerLicenseExpiryMM)).slice(-2)%> / <%=data.embalmerLicenseExpiryDD===null ? "xx"
+                                : ('0' + (data.embalmerLicenseExpiryDD)).slice(-2)%>
+                </td>
+                <td><a href="embalmer/<%=data._id%>">edit</a></td>
+            </tr>
+            <%}%>
+    </table>
 </body>
+
 </html>

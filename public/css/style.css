@@ -1,3 +1,5 @@
+@import url(/css/navStyles.css);
+
 .container {
     border: solid gray;
     border-radius: 1rem;
@@ -7,7 +9,7 @@
     z-index: -1;
 }
 
-.stats {
+/* .stats {
     margin-top: -1rem;
     margin-left: 1rem;
     padding-left: 0.5rem;
@@ -15,14 +17,23 @@
     z-index: 1;
     width: 4rem;
     color: magenta;
+} */
 
-    /* z-index: 1; */
+h1,
+h2,
+h6 {
+    text-align: center;
+    margin: 0;
 }
 
-#TODO {
-    background-color: red;
+.dateToday{
+    position: fixed;
+    bottom: 0;
+    right: 0;
 }
 
-body {
-    background-color: green;
+.hide {
+    display: none;
 }
+
+

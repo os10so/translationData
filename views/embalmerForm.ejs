@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FORM</title>
-    <link href="/css/embalerForm.css" rel="stylesheet" type="text/css">
-    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+    <title>Embalmer Form</title>
+    <link href="/css/embaler.css" rel="stylesheet" type="text/css">
 </head>
 
 <body>
+    <%- include('partials/header.ejs') %>
     <h1>SUBMIT NEW EMBALMER</h1>
     <form action="/embalmer" method="post" class="formbg">
         <br>
@@ -34,7 +34,6 @@
             <label for="embalmerAddress2" class="embalmerAddress2">Address Line 2</label>
             <input type="text" id="embalmerAddress2" name="embalmerAddress2" class="form-control embalmerAddress2"
                 placeholder="Philippines">
-
 
             <br>
             <div class="stats"><label>TITLE / DESIGNATION</label></div>
@@ -78,7 +77,7 @@
                     class="form-control" placeholder="DD">
 
                 <br>
-                <button type="submit"> SUMBIT </button>
+                <button type="submit" class="submitbutton"> SUMBIT </button>
                 <!-- <button> CLEAR </button> -->
             </div>
         </div>

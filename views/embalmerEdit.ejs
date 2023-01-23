@@ -6,11 +6,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FORM</title>
-    <link href="/css/embalerForm.css" rel="stylesheet" type="text/css">
+    <link href="/css/embaler.css" rel="stylesheet" type="text/css">
 
 </head>
 
 <body>
+    <%- include('partials/header.ejs') %>
     <h1>EDIT EMBALMER</h1>
 
     <form action="/embalmer/<%=data._id%>?_method=put" method="post" class="formbg">
@@ -82,7 +83,7 @@
                     class="form-control" value=<%=data.embalmerLicenseExpiryDD%>>
 
                 <br>
-                <button type="submit"> SUMBIT </button>
+                <button type="submit" class="submitbutton"> SUMBIT </button>
                 <!-- <button> CLEAR </button> -->
             </div>
         </div>

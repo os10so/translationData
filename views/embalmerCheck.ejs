@@ -6,22 +6,24 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CHECK</title>
-    <link href="/css/embalerForm.css" rel="stylesheet" type="text/css">
+    <link href="/css/embaler.css" rel="stylesheet" type="text/css">
 </head>
 
 <!-- <h1>FIRST NAME: <%= data.embalmerGivenName %> </h1> -->
 
 <body>
-    <div class="navBar">
+    <%- include('partials/header.ejs') %>
+    <!-- <div class="navBar">
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
                 <li><a href="/embalmer">Embalmer</a></li>
+                <li><a href="/designation">Designation</a></li>
                 <li class="hide"><a href="/">TBD</a></li>
                 <li class="hide"><a href="/">TBD</a></li>
             </ul>
         </nav>
-    </div>
+    </div> -->
 
     <div action="/embalmer" method="post" class="formbg">
 
@@ -112,9 +114,9 @@
                     <%= data.embalmerLicenseExpiryDD %>
                 </div>
 
-                <a href="/embalmer/<%= data._id %>/edit"><button>EDIT</button></a>
+                <a href="/embalmer/<%= data._id %>/edit"><button class="submitbutton">EDIT</button></a>
                 <form action="/embalmer/<%= data._id %>?_method=delete" method="post">
-                    <button>DELETE</button>
+                    <button class="submitbutton">DELETE</button>
                 </form>
             </div>
         </div>

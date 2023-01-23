@@ -1,5 +1,8 @@
 /* //https://codepen.io/stack-findover/pen/OJRvPQv */
 /* https://freefrontend.com/css-forms/ */
+@import url(/css/navStyles.css);
+
+
 .formbg {
     margin: 0px auto;
     padding: 8px 16px;
@@ -56,7 +59,7 @@ input[type=radio] {
     margin: 8px 0;
 }
 
-button {
+button.submitbutton {
     appearance: none;
     background-color: #007bff;
     border: 2px solid #007bff;
@@ -84,12 +87,12 @@ button {
     will-change: transform;
 }
 
-button:hover {
+button.submitbutton:hover {
     box-shadow: rgba(0, 0, 0, 0.50) 0 8px 15px;
     transform: translateY(-5px);
 }
 
-button:active {
+button.submitbutton:active {
     box-shadow: none;
     transform: translateY(0);
 }
@@ -120,7 +123,7 @@ h6 {
     min-width: 31%;
 }
 
-
+/* 
 .navBar {
     background-color: #007bff;
     display: inline-flexbox;
@@ -155,7 +158,7 @@ nav li a {
 
 nav li a:hover {
     background-color: #185fac;
-}
+} */
 
 table{
     margin: 0px auto;
@@ -164,3 +167,11 @@ table{
 th{
     padding: 0px 10px;
 }
+
+tr:hover {background-color: #979898;}
+
+th{
+    background-color: #696868;
+}
+
+

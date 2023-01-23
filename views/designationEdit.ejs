@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Official Form</title>
+    <link href="/css/embaler.css" rel="stylesheet" type="text/css">
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+</head>
+
+<body>
+    <%- include('partials/header.ejs') %>
+    <h1>SUBMIT NEW LOCAL REGISTRAR OFFICIALS</h1>
+    <form action="/designation/<%=data._id%>?_method=put" method="post" class="formbg">
+        <br>
+        <div class="stats">LOCATION</div>
+        <div class="row">
+            <label for="designationLocationProvince">Province</label>
+            <input type="text" id="designationLocationProvince" name="designationLocationProvince" class="form-control"
+                value="<%=data.designationLocationProvince%>">
+            <label for="designationLocationCity">City / Municipality</label>
+            <input type="text" id="designationLocationCity" name="designationLocationCity" class="form-control"
+                value="<%=data.designationLocationCity%>">
+        </div>
+
+        <br>
+        <div class="stats">NAME</div>
+        <div class="row">
+            <label for="designationGivenName">Given Name</label>
+            <input type="text" id="designationGivenName" name="designationGivenName" class="form-control" value="<%=data.designationGivenName%>">
+            <label for="designationMiddleName">Middle Name</label>
+            <input type="text" id="designationMiddleName" name="designationMiddleName" class="form-control" value="<%=data.designationMiddleName%>">
+            <label for="designationSurName">Surname</label>
+            <input type="text" id="designationSurName" name="designationSurName" class="form-control" value="<%=data.designationSurName%>">
+        </div>
+
+        <br>
+        <div class="stats">Position / Designation</div>
+        <div class="row">
+            <label for="designationPostion">Position / Designation</label>
+            <input type="text" id="designationPostion" name="designationPostion" class="form-control"
+                value="<%=data.designationPostion%>">
+        </div>
+
+        <br>
+        <div class="stats"><label>DATE</label></div>
+        <div class="row">
+            <label> YEAR <sub>(YYYY)</sub></label><br>
+            <label for="designationYear"></label>
+            <input type="number" id="designationYear" class="embalmerDate" name="designationYear" class="form-control"
+                value="<%=data.designationYear%>" min="1920">
+            <br>
+            <button type="submit" class="submitbutton"> SUMBIT </button>
+            <!-- <button> CLEAR </button> -->
+        </div>
+    </form>
+</body>
+
+</html>

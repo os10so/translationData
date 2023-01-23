@@ -4,16 +4,18 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/style.css" rel="stylesheet" type="text/css">
     <title>Home</title>
 </head>
 <body>
-    Date today is <%= date %> // <%=dateToday.monthWord %> <%=dateToday.day %> <%=dateToday.year %>   
-    <h1>TRANSLATION SERVICE</h1>
-    <h2>DEATH CERTIFICATE</h2>
-    <h2>FORMAT</h2>
-    <li><a href='/DC/new'>Death Certificate - Municipal Form 103</a></li>
-    <li><a href='/embalmer'>Death Certificate - Embalmer</a></li>
-    
-    
+    <%- include('partials/header.ejs') %>
+    <div class="dateToday">Date today is <%= date %> // <%=dateToday.monthWord %> <%=dateToday.day %> <%=dateToday.year %></div>
+    <h1>TRANSLATION</h1>
+    <!-- <h2>DEATH CERTIFICATE</h2> -->
+    <!-- <h2>FORMAT</h2> -->
+    <li class="hide"><a href='/DC/new'>Death Certificate - Municipal Form 103</a></li>
+    <li><a href='/embalmer'>Death Certificate - Embalmer</a></li> 
+    <li><a href='/designation'>Local Registrar Officials</a></li>  
+
 </body>
 </html>

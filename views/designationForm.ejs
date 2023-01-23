@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrar Official Form</title>
+    <link href="/css/embaler.css" rel="stylesheet" type="text/css">
+
+    <!-- <link rel="stylesheet" href="/css/style.css"> -->
+</head>
+
+<body>
+    <%- include('partials/header.ejs') %>
+    <h1>SUBMIT NEW LOCAL REGISTRAR OFFICIALS</h1>
+    <form action="/designation" method="post" class="formbg">
+
+        <br>
+        <div class="stats">LOCATION</div>
+        <div class="row">
+            <label for="designationLocationProvince">Province</label>
+            <input type="text" list="designationLocationProvinceList" id="designationLocationProvince"
+                name="designationLocationProvince" class="form-control" placeholder="Metro Manila">
+
+
+            <datalist id="designationLocationProvinceList">
+                <%for(i=0; i<provinceMap.length; i++){%>
+                    <option value="<%=provinceMap[i][0]%>">
+                        <%}%>
+            </datalist>
+
+
+            <!--Assigning values from INDEX.JS to HTML to inline JAVASCRIPT dynamically - part 1 
+                Assigning values from index.js "cityMap & provinceMap" to ejs using "< %  % >" tag
+                //reference https://stackoverflow.com/questions/28603658/can-a-js-script-get-a-variable-written-in-a-ejs-context-page-within-the-same-fil -->
+
+            <% var provinceMap=JSON.stringify(provinceMap) %>
+
+                <label for="designationLocationCity">City / Municipality</label>
+                <input type="text" list="designationLocationCityList" id="designationLocationCity"
+                    name="designationLocationCity" class="form-control" placeholder="Manila">
+
+                <datalist id="designationLocationCityList"></datalist>
+
+            <% var cityMap=JSON.stringify(cityMap) %>
+        </div>
+
+        <% var citymun_temp = JSON.stringify(citymun_) %> 
+        <% var province_temp = JSON.stringify(province_) %> 
+
+        <script>
+            designationLocationProvince.addEventListener('change', function(){
+                provinceChosen = document.getElementById("designationLocationProvince").value;
+
+
+                // Assigning values from INDEX.JS to HTML to inline JAVASCRIPT dynamically - part 2
+                // Assigning values from EJS to JS
+                //reference https://stackoverflow.com/questions/28603658/can-a-js-script-get-a-variable-written-in-a-ejs-context-page-within-the-same-fil
+                var province_ = <%-province_temp%>;
+
+                provinceChosenDesc = province_.filter((n)=> n.provDesc == provinceChosen.toUpperCase());
+                if(provinceChosen){ //if there is province data chosen,proceed
+                   provinceChosenCode = provinceChosenDesc[0].provCode;
+                                                        
+                    var citymun_ = <%-citymun_temp%>;
+                    // console.log(province_.length, citymun_);
+                    citymun = citymun_.filter((n)=> n.provCode == provinceChosenCode);
+                    
+
+                    var provinceMapppingScript = <%-provinceMap%>;
+                    var CityMappping = <%-cityMap%>;
+
+                    if (provinceChosen == "" || provinceChosen == null){
+                        citymun = citymun_;
+                    } 
+
+                    const list = document.getElementById('designationLocationCityList'); 
+                    const listlength = list.childNodes.length; //check if it has child node;
+                    list.innerText = ''; //clear data of datalist options of ID=designationLocationCityList
+
+                    //https://www.geeksforgeeks.org/remove-all-the-child-elements-of-a-dom-node-in-javascript/
+                    
+
+
+                    citymun.forEach(item => {
+                        let option = document.createElement('option');
+                        option.value = Capitalize(item.citymunDesc);
+                        //console.log(option.value);  
+                        list.appendChild(option);
+                    });
+                }
+            });// }); //reference: https://www.educative.io/answers/how-to-ensure-an-event-listener-is-only-fired-once-in-javascript
+           
+
+             //CAPITALIZE FIRST LETTER OF EVERY WORD FUNCTION
+            function Capitalize(tocapitalize) {
+                const words = tocapitalize.split(" ");
+                
+                for (let i = 0; i < words.length; i++) {
+                    words[i] = words[i][0] === "(" ? "(" + words[i][1].toUpperCase() + words[i].substr(2).toLowerCase() : words[i][0].toUpperCase() + words[i].substr(1).toLowerCase();
+                    // words[i] = words[i][0].toUpperCase() + words[i].substr(1).toLowerCase();
+                }
+                return (words.join(" "));
+            }
+        </script>
+
+        <br>
+        <div class="stats">NAME</div>
+        <div class="row">
+            <label for="designationGivenName">Given Name</label>
+            <input type="text" id="designationGivenName" name="designationGivenName" class="form-control"
+                placeholder="Juan">
+            <label for="designationMiddleName">Middle Name</label>
+            <input type="text" id="designationMiddleName" name="designationMiddleName" class="form-control"
+                placeholder="Martinez">
+            <label for="designationSurName">Surname</label>
+            <input type="text" id="designationSurName" name="designationSurName" class="form-control"
+                placeholder="dela Cruz">
+        </div>
+
+        <br>
+        <div class="stats">Position / Designation</div>
+        <div class="row">
+            <label for="designationPostion">Position / Designation</label>
+            <input type="text" id="designationPostion" name="designationPostion" class="form-control"
+                placeholder="Municipal Civil Registrar">
+        </div>
+
+        <br>
+        <div class="stats"><label>DATE</label></div>
+        <div class="row">
+            <label> YEAR <sub>(YYYY)</sub></label><br>
+            <label for="designationYear"></label>
+            <input type="number" id="designationYear" class="designationYear" name="designationYear"
+                class="form-control" placeholder="YYYY" min="1920">
+            <br>
+
+            <button type="submit" class="submitbutton"> SUMBIT </button>
+            <!-- <button> CLEAR </button> -->
+        </div>
+    </form>
+
+</body>
+
+</html>

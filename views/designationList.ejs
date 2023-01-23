@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="/css/embaler.css" rel="stylesheet" type="text/css">
+    <title>LOCAL REGISTRAR OFFICIALS LIST</title>
+</head>
+
+<body>
+    <%- include('partials/header.ejs') %>
+    <h1>LOCAL REGISTRAR OFFICIALS LIST</h1>
+    <!-- <a href="/"> <button class="submitbutton">HOME</button> </a> -->
+    <a href="/designation/new"> <button class="submitbutton">NEW ENTRY</button> </a>
+
+    <table>
+        <tr>
+            <th>Province</th>
+            <th>City/Municipality</th>
+            <th>Name</th>
+            <th>Designation</th>
+            <th>Year<br><sub>(YYYY)</sub></th>
+            <th>Edit</th>
+
+        </tr>
+
+        <% for(let data of datas) {%>
+            <tr>
+                <td>
+                    <%=data.designationLocationProvince%>
+                </td>
+                <td>
+                    <%=data.designationLocationCity%>
+                </td>
+                <td>
+                    <%=data.designationGivenName%>
+                        <%=data.designationMiddleName%>
+                            <%=data.designationSurName%>
+                </td>
+                <td>
+                    <%=data.designationPostion%>
+                </td>
+                <td>
+                    <%=data.designationYear===null ? "xxxx" : data.designationYear%>
+                </td>
+                <td><a href="designation/<%=data._id%>">edit</a></td>
+            </tr>
+            
+            <%}%>
+
+    </table>
+</body>
+
+</html>
