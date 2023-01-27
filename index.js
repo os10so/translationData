@@ -3,8 +3,8 @@ const app = express();
 const path = require('path');
 const mongoose = require('mongoose');
 const methodOverride = require('method-override');
-const {provinceList, provinceMap, cityList, cityMap, citymun_, province_} = require('./indextestjson.js');
-// console.log("log", provinceList);
+const { provinceList, provinceMap, cityList, cityMap, citymun_, province_ } = require('./indextestjson.js');
+
 
 
 // if (process.env.NODE_ENV !== 'production') {
@@ -119,8 +119,8 @@ app.get("/embalmer/new", (req, res) => {
 })
 
 app.get("/embalmer", async (req, res) => {
-    const data = await embalmerData.find({}).sort({"embalmerGivenName": 1});
-    res.render('embalmerList', {date, datas: data});
+    const data = await embalmerData.find({}).sort({ "embalmerGivenName": 1 });
+    res.render('embalmerList', { date, datas: data });
 })
 
 app.post('/embalmer', async (req, res) => {
@@ -136,7 +136,7 @@ app.post('/embalmer', async (req, res) => {
 app.get("/embalmer/:id", async (req, res) => {
     const { id } = req.params;
     const data = await embalmerData.findById(id);
-    console.log("data log", data);
+    // console.log("data log", data);
     res.render('embalmerCheck', { data });
 })
 
@@ -149,8 +149,9 @@ app.get("/embalmer/:id/edit", async (req, res) => {
 app.put('/embalmer/:id', async (req, res) => {
     const { id } = req.params;
     const data = await embalmerData.findByIdAndUpdate(id, req.body, { runvalidators: true });
+    //console.log("putputputputputput", data)
     //res.send("edited file")
-    res.redirect(`/embalmer/${data._id}`);
+    //res.redirect(`/embalmer/${data._id}`);
 })
 
 app.delete('/embalmer/:id', async (req, res) => {
@@ -161,8 +162,8 @@ app.delete('/embalmer/:id', async (req, res) => {
 })
 
 // POSITION / DESIGNATION
- app.get("/designation/new", (req, res) => {
-    res.render('designationForm', {provinceList, provinceMap, cityList, cityMap, citymun_, province_});
+app.get("/designation/new", (req, res) => {
+    res.render('designationForm', { provinceList, provinceMap, cityList, cityMap, citymun_, province_ });
     //todo, passing cityList and citymap array
     //get dynamic data and dyamically choose what city to extract
     //use ejs to provide the datalist
@@ -171,7 +172,7 @@ app.delete('/embalmer/:id', async (req, res) => {
 app.get("/designation", async (req, res) => {
     // const data = await designationData.find({}).sort({"designationLocationProvince":1});
     const data = await designationData.find({}).sort([["designationLocationProvince", 1], ["designationLocationCity", 1], ["designationGivenName", 1]]);
-    res.render('designationList', {date, datas: data });
+    res.render('designationList', { date, datas: data });
 })
 
 app.post('/designation', async (req, res) => {
@@ -187,21 +188,60 @@ app.post('/designation', async (req, res) => {
 app.get("/designation/:id", async (req, res) => {
     const { id } = req.params;
     const data = await designationData.findById(id);
-    console.log("data log", data);
-    res.render('designationCheck', { data });
+    console.log("get data log", data);
+    res.render('designationCheck', {data});
 })
 
 app.get("/designation/:id/edit", async (req, res) => {
     const { id } = req.params;
     const data = await designationData.findById(id);
-    console.log(data);
-    res.render('designationEdit', { data });
+    console.log("get(/designation/:id/edit", data);
+    res.render('designationEdit', { data , provinceList, provinceMap, cityList, cityMap, citymun_, province_ });
 })
 
 app.put('/designation/:id', async (req, res) => {
     const { id } = req.params;
-    const data = await designationData.findByIdAndUpdate(id, req.body, { runvalidators: true });
-    //res.send("edited file")
+    //const data = await designationData.findByIdAndUpdate(id, req.body, { runvalidators: true });
+
+    console.log('req.body.designationYear', req.body.designationYear);
+    console.log('req.body.designationYearRemoval', req.body.designationYearRemoval);
+
+    const data = await designationData.findByIdAndUpdate(
+        { _id: id },
+        {
+            designationLocationProvince: req.body.designationLocationProvince,
+            designationLocationCity: req.body.designationLocationCity,
+            designationPostion: req.body.designationPostion,
+            designationGivenName: req.body.designationGivenName,
+            designationMiddleName: req.body.designationMiddleName,
+            designationSurName: req.body.designationSurName,
+        },
+    )
+
+    //adding data to array
+    await designationData.updateOne(
+        { _id: id },
+        {
+            $addToSet: {
+                designationYear://https://www.mongodb.com/docs/manual/reference/operator/update/sort/#mongodb-update-up.-sort
+                    req.body.designationYear
+            },
+        },
+    )
+
+    //removing of array data
+    await designationData.updateOne(//https://www.youtube.com/watch?v=YPPUAUk9I-w
+        { _id: id },
+        { $pull: { designationYear: {$in:[req.body.designationYearRemoval ,""]} } }, //https://stackoverflow.com/questions/48709923/mongodb-pull-multiple-objects-from-an-array
+    )
+    
+    //sort
+    await designationData.updateOne(//https://www.mongodb.com/docs/manual/reference/operator/update/sort/
+        { _id: id },
+        { $push: { designationYear: {
+              $each: [],
+              $sort: 1 } } }
+    )
     res.redirect(`/designation/${data._id}`);
 })
 

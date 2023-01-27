@@ -58,11 +58,22 @@
                 // Assigning values from EJS to JS
                 //reference https://stackoverflow.com/questions/28603658/can-a-js-script-get-a-variable-written-in-a-ejs-context-page-within-the-same-fil
                 var province_ = <%-province_temp%>;
+                var provinceMapppingScript = <%-provinceMap%>;
 
                 provinceChosenDesc = province_.filter((n)=> n.provDesc == provinceChosen.toUpperCase());
+                provinceChosenDescMM = provinceMapppingScript.filter((n)=> n[0] == provinceChosen);
+                // console.log("provinceMapppingScript", provinceMapppingScript)
+                // console.log("provinceChosenDescMM", provinceChosenDescMM[0])
                 if(provinceChosen){ //if there is province data chosen,proceed
-                   provinceChosenCode = provinceChosenDesc[0].provCode;
-                                                        
+                    if(provinceChosen == "Metro Manila | National Capital Region"){
+                        provinceChosenCode = provinceChosenDescMM[0][1];
+                        // console.log("provinceChosenCode",provinceChosenCode)
+                    }
+                    else{
+                        provinceChosenCode = provinceChosenDesc[0].provCode;
+                    }
+                                                
+
                     var citymun_ = <%-citymun_temp%>;
                     // console.log(province_.length, citymun_);
                     citymun = citymun_.filter((n)=> n.provCode == provinceChosenCode);
@@ -74,6 +85,9 @@
                     if (provinceChosen == "" || provinceChosen == null){
                         citymun = citymun_;
                     } 
+                    else if(provinceChosen == "Metro Manila | National Capital Region" || provinceChosen == "NCR" || provinceChosen == "ncr"){
+                        citymun = citymun_.filter((n)=> provinceChosenCode.slice(1, 4).includes(parseInt(n.provCode))); //splice does not include binondo towns //parstINT converts data from string to number
+                    }
 
                     const list = document.getElementById('designationLocationCityList'); 
                     const listlength = list.childNodes.length; //check if it has child node;
@@ -88,7 +102,13 @@
                         option.value = Capitalize(item.citymunDesc);
                         //console.log(option.value);  
                         list.appendChild(option);
+                        // console.log(list)
                     });
+                    if (provinceChosen == "Metro Manila | National Capital Region"){
+                        option = document.createElement('option');
+                        option.value = Capitalize("City of Manila");
+                        list.appendChild(option);
+                    }
                 }
             });// }); //reference: https://www.educative.io/answers/how-to-ensure-an-event-listener-is-only-fired-once-in-javascript
            

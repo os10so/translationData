@@ -18,16 +18,17 @@ var province_ = province.RECORDS;
 //----------------------PROVINCE-------------------------------------
 provinceList = []; //Create and empty array for list of province
 provinceMap = []; //Create and empty array for list of province with corresponding provincial code
-
+var counter = 0;
 for (i = 0; i < province.RECORDS.length; i++) {
     let provDes = province.RECORDS[i].provDesc; //Provincial Name
     let provCod = province.RECORDS[i].provCode; //Provincial Code
     if ((provDes.includes("NCR") && provinceList.includes("Metro Manila | National Capital Region | NCR")) || (provDes.includes("MANILA") && provinceList.includes("Metro Manila | National Capital Region | NCR"))) { //Checks if the current array data being read does include "NCR" / "MANILA" word. if yes, check if the array created does include the logner version word, if yes, do nothing // skip
         // console.log("skipped", province.RECORDS[i - 1]);
     }
-    else if (provDes.includes("NCR") || provDes.includes("MANILA")) { //Checks if the current array data being read does include "NCR" / "MANILA" word. If yes, manually use the longer version of NCR / Metro Manila data
-        provinceList.push("Metro Manila | National Capital Region | NCR");
-        provinceMap.push(["Metro Manila | National Capital Region | NCR", [1339, 1374, 1375, 1376]]);
+    else if (counter==0 && (provDes.includes("NCR") || provDes.includes("MANILA"))) { //Checks if the current array data being read does include "NCR" / "MANILA" word. If yes, manually use the longer version of NCR / Metro Manila data
+        provinceList.push("Metro Manila | National Capital Region");
+        provinceMap.push(["Metro Manila | National Capital Region", [1339, 1374, 1375, 1376]]);
+        counter ++;
     }
     else {
         provinceList.push(Capitalize(provDes));

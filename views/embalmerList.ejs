@@ -11,74 +11,204 @@
 
 <body>
     <%- include('partials/header.ejs') %>
-    <h1>EMBALMER LIST</h1>
-    <a href="/"> <button class="submitbutton">HOME</button> </a>
-    <a href="/embalmer/new"> <button class="submitbutton">NEW ENTRY</button> </a>
+        <h1>EMBALMER LIST</h1>
+        <!-- <a href="/"> <button class="submitbutton">HOME</button> </a> -->
+        <a href="/embalmer/new"> <button class="submitbutton">NEW ENTRY</button> </a>
 
-    <!-- <ul>
-            <% for(let data of datas) {%>
-                <li> 
-                    <a href='/embalmer/<%=data._id%>'>
-                        <%=data.embalmerGivenName%> - <%=data.embalmerMiddleName%> - <%=data.embalmerSurName%> -
-                                    <%=data.embalmerAddress1%> - <%=data.embalmerAddress2%>
-                                            <%= data.embalmerDesignation%> -
-                                                <%= data.embalmerLicense%> -
-                                                    <%= data.embalmerLicenseIssedAt%> -
-                                                        <%= data.embalmerLicenseIssedOnYYYY%>
-                    </a>
-                </li>
-            <%}%>
-        </ul> -->
 
-    <table>
-        <tr>
+        <table id="embalmerList">
+            <tr>
+                <th scope="col"><input type="text" id="searchName" onkeyup="searchData()" placeholder="Name"></th>
+                <th scope="col"><input type="text" id="searchAddress" onkeyup="searchData()" placeholder="Address">
+                </th>
+                <th scope="col"><input type="text" id="searchDesignation" onkeyup="searchData()" placeholder="Designation">
+                </th>
+                <th scope="col"><input type="text" id="searchLicense" onkeyup="searchData()" placeholder="License #"></th>
+                <th scope="col"><input type="text" id="searchIssueYear" onkeyup="searchData()" placeholder="YYYY">
+                </th>
+                <th scope="col"><input type="text" id="searchIssueMonth" onkeyup="searchData()" placeholder="MM">
+                </th>
+                <th scope="col"><input type="text" id="searchIssueDate" onkeyup="searchData()" placeholder="DD">
+                </th>
+                <th scope="col"><input type="text" id="searchIssedAt" onkeyup="searchData()" placeholder="Issued at">
+                </th>
+                <th scope="col"><input type="text" id="searchExpYear" onkeyup="searchData()" placeholder="YYYY">
+                </th>
+                <th scope="col"><input type="text" id="searchExpMonth" onkeyup="searchData()" placeholder="MM">
+                </th>
+                <th scope="col"><input type="text" id="searchExpDate" onkeyup="searchData()" placeholder="DD">
+                </th>
+                <th rowspan="2">Edit</th>
+            </tr>
             <th>Name</th>
             <th>Address</th>
             <th>Designation</th>
             <th>License No.</th>
-            <th>Issued on<br><sub>(YYYY/MM/DD)</sub></th>
+            <th colspan="3"style="width:15%">Issued on<br><sub>(YYYY/MM/DD)</sub></th>
             <th>Issued at</th>
-            <th>Expiray Date<br><sub>(YYYY/MM/DD)</sub></th>
-            <th>Edit</th>
-
-        </tr>
-
-        <% for(let data of datas) {%>
-            <tr>
-                <td>
-                    <%=data.embalmerGivenName%>
-                        <%=data.embalmerMiddleName%>
-                            <%=data.embalmerSurName%>
-                </td>
-                <td>
-                    <%=data.embalmerAddress1%>
-                        <%=data.embalmerAddress2%>
-                </td>
-                <td>
-                    <%=data.embalmerDesignation%>
-                </td>
-                <td>
-                    <%=data.embalmerLicense%>
-                </td>
-                <td>
-                    <%=data.embalmerLicenseIssedOnYYYY===null ? "xxxx" : data.embalmerLicenseIssedOnYYYY%> / <%=
-                            data.embalmerLicenseIssedOnMM===null ? "xx" : ('0' +
-                            (data.embalmerLicenseIssedOnMM)).slice(-2)%> / <%=data.embalmerLicenseIssedOnDD===null
-                                ? "xx" : ('0' + (data.embalmerLicenseIssedOnDD)).slice(-2)%>
-                </td>
-                <td>
-                    <%=data.embalmerLicenseIssedAt%>
-                </td>
-                <td>
-                    <%=data.embalmerLicenseExpiryYYYY===null ? "xxxx" : data.embalmerLicenseExpiryYYYY%> / <%=
-                            data.embalmerLicenseExpiryMM===null ? "xx" : ('0' +
-                            (data.embalmerLicenseExpiryMM)).slice(-2)%> / <%=data.embalmerLicenseExpiryDD===null ? "xx"
-                                : ('0' + (data.embalmerLicenseExpiryDD)).slice(-2)%>
-                </td>
-                <td><a href="embalmer/<%=data._id%>">edit</a></td>
+            <th colspan="3" style="width:15%">Expiray Date<br><sub>(YYYY/MM/DD)</sub></th>
             </tr>
-            <%}%>
-    </table>
+
+            <% for(let data of datas) {%>
+                <tr>
+                    <td>
+                        <%=data.embalmerGivenName%>
+                            <%=data.embalmerMiddleName%>
+                                <%=data.embalmerSurName%>
+                    </td>
+                    <td>
+                        <%=data.embalmerAddress1%>
+                            <%=data.embalmerAddress2%>
+                    </td>
+                    <td>
+                        <%=data.embalmerDesignation%>
+                    </td>
+                    <td>
+                        <%=data.embalmerLicense%>
+                    </td>
+                    <td style= "text-align: center">
+                        <%=data.embalmerLicenseIssedOnYYYY===null ? "xxxx" : data.embalmerLicenseIssedOnYYYY%>
+                    </td>
+                    <td style= "text-align: center">
+                        <%=data.embalmerLicenseIssedOnMM===null ? "xx" : ('0' +
+                                (data.embalmerLicenseIssedOnMM)).slice(-2)%>
+                    </td>
+                    <td style= "text-align: center">
+                        <%=data.embalmerLicenseIssedOnDD===null
+                                    ? "xx" : ('0' + (data.embalmerLicenseIssedOnDD)).slice(-2)%>
+                    </td>
+                    <td>
+                        <%=data.embalmerLicenseIssedAt%>
+                    </td>
+                    <td style= "text-align: center">
+                        <%=data.embalmerLicenseExpiryYYYY===null ? "xxxx" : data.embalmerLicenseExpiryYYYY%>
+                    </td>
+                    <td style= "text-align: center"> <%=
+                        data.embalmerLicenseExpiryMM===null ? "xx" : ('0' +
+                        (data.embalmerLicenseExpiryMM)).slice(-2)%>
+                        </td>
+                    <td style= "text-align: center"><%=data.embalmerLicenseExpiryDD===null
+                        ? "xx" : ('0' + (data.embalmerLicenseExpiryDD)).slice(-2)%>
+                        </td>
+                    <td style= "text-align: center"><a href="embalmer/<%=data._id%>">
+                        <svg width="15" height="15" viewBox="0 0 512 512"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>
+                    </a></td>
+                </tr>
+                <%}%>
+        </table>
+
+        <script>
+            function searchData() {
+                //https://stackoverflow.com/questions/60054573/multiple-filter-with-dropdown-using-javascript-in-html-table
+                // https://www.w3schools.com/howto/howto_js_filter_table.asp
+                const table = document.getElementById("embalmerList");
+                const tr = table.getElementsByTagName("tr");
+
+                var searchName = document.getElementById("searchName").value.toUpperCase();
+                var searchAddress = document.getElementById("searchAddress").value.toUpperCase();
+                var searchDesignation = document.getElementById("searchDesignation").value.toUpperCase();
+                var searchLicense = document.getElementById("searchLicense").value.toUpperCase();
+                var searchIssueYear = document.getElementById("searchIssueYear").value.toUpperCase();
+                var searchIssueMonth = document.getElementById("searchIssueMonth").value.toUpperCase();
+                var searchIssueDate = document.getElementById("searchIssueDate").value.toUpperCase();
+                var searchIssedAt = document.getElementById("searchIssedAt").value.toUpperCase();
+                var searchExpDate = document.getElementById("searchExpDate").value.toUpperCase();
+
+
+                // var rowCountry = tr[i].getElementsByTagName("td")[1].textContent.toUpperCase();
+                // var rowAge = tr[i].getElementsByTagName("td")[2].textContent.toUpperCase();
+                // var rowSalary = tr[i].getElementsByTagName("td")[3].textContent.toUpperCase();
+
+                var input, filter, td, i, txtValue;
+                // name = document.getElementById("searchProvince").value.toUpperCase();
+                for (i = 2; i < tr.length; i++) {
+                    // console.log(i, 1, tr[0].getElementsByTagName("td")[0])
+                    // console.log(i, 2, tr[1].getElementsByTagName("td")[0])
+                    rowName = tr[i].getElementsByTagName("td")[0].textContent.toUpperCase();
+                    rowAddress = tr[i].getElementsByTagName("td")[1].textContent.toUpperCase();
+                    rowDesignation = tr[i].getElementsByTagName("td")[2].textContent.toUpperCase();
+                    rowLicense = tr[i].getElementsByTagName("td")[3].textContent.toUpperCase();
+                    rowIssueYear = tr[i].getElementsByTagName("td")[4].textContent.toUpperCase();
+                    rowIssueMonth = tr[i].getElementsByTagName("td")[5].textContent.toUpperCase();
+                    rowIssueDate = tr[i].getElementsByTagName("td")[6].textContent.toUpperCase();
+                    rowIssuedAt = tr[i].getElementsByTagName("td")[7].textContent.toUpperCase();
+                    rowExpDate = tr[i].getElementsByTagName("td")[8].textContent.toUpperCase();
+                    var isDiplay = true;
+
+                    if (rowName) {
+                        if (rowName.indexOf(searchName) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+
+                    if (rowAddress && tr[i].style.display != "none") {
+                        if (rowAddress.indexOf(searchAddress) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+
+                    if (rowDesignation && tr[i].style.display != "none") {
+                        if (rowDesignation.indexOf(searchDesignation) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+
+                    if (rowLicense && tr[i].style.display != "none") {
+                        if (rowLicense.indexOf(searchLicense) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+
+                    if (rowIssueYear && tr[i].style.display != "none") {
+                        if (rowIssueYear.indexOf(searchIssueYear) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+
+                    
+                    if (rowIssueMonth && tr[i].style.display != "none") {
+                        if (rowIssueMonth.indexOf(searchIssueMonth) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                    
+                    if (rowIssueDate && tr[i].style.display != "none") {
+                        if (rowIssueDate.indexOf(searchIssueDate) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+
+                    if (rowIssuedAt && tr[i].style.display != "none") {
+                        if (rowIssuedAt.indexOf(searchIssedAt) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                    // if (rowExpDate && tr[i].style.display != "none") {
+                    //     if (rowExpDate.indexOf(searchExpDate) > -1) {
+                    //         tr[i].style.display = "";
+                    //     } else {
+                    //         tr[i].style.display = "none";
+                    //     }
+                    // }
+                }
+            }
+        </script>
 </body>
 
 </html>

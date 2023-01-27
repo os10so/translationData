@@ -7,50 +7,141 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="/css/embaler.css" rel="stylesheet" type="text/css">
     <title>LOCAL REGISTRAR OFFICIALS LIST</title>
+
+
 </head>
 
 <body>
     <%- include('partials/header.ejs') %>
-    <h1>LOCAL REGISTRAR OFFICIALS LIST</h1>
-    <!-- <a href="/"> <button class="submitbutton">HOME</button> </a> -->
-    <a href="/designation/new"> <button class="submitbutton">NEW ENTRY</button> </a>
+        <h1>LOCAL REGISTRAR OFFICIALS LIST</h1>
+        <!-- <a href="/"> <button class="submitbutton">HOME</button> </a> -->
+        <a href="/designation/new"> <button class="submitbutton">NEW ENTRY</button> </a>
 
-    <table>
-        <tr>
-            <th>Province</th>
-            <th>City/Municipality</th>
-            <th>Name</th>
-            <th>Designation</th>
-            <th>Year<br><sub>(YYYY)</sub></th>
-            <th>Edit</th>
-
-        </tr>
-
-        <% for(let data of datas) {%>
+        <table id="designationList">
             <tr>
-                <td>
-                    <%=data.designationLocationProvince%>
-                </td>
-                <td>
-                    <%=data.designationLocationCity%>
-                </td>
-                <td>
-                    <%=data.designationGivenName%>
-                        <%=data.designationMiddleName%>
-                            <%=data.designationSurName%>
-                </td>
-                <td>
-                    <%=data.designationPostion%>
-                </td>
-                <td>
-                    <%=data.designationYear===null ? "xxxx" : data.designationYear%>
-                </td>
-                <td><a href="designation/<%=data._id%>">edit</a></td>
-            </tr>
-            
-            <%}%>
+                <th scope="col"><input type="text" id="searchProvince" onkeyup="searchData()"
+                        placeholder="Province"></th>
+                <th scope="col"><input type="text" id="searchCity" onkeyup="searchData()" placeholder="City / Municipality">
+                </th>
+                <th scope="col"><input type="text" id="searchName" onkeyup="searchData()" placeholder="Name">
 
-    </table>
+                </th>
+                <th scope="col"><input type="text" id="searchDesignation" onkeyup="searchData()"
+                        placeholder="Search for Designation"></th>
+                <th scope="col"><input type="text" id="searchYear" onkeyup="searchData()" placeholder="YYYY">
+                </th>
+                <th rowspan="2">Edit</th>
+            </tr>
+            <tr>
+                <!-- <row>
+            <rowgroup span="2"></rowgroup>
+             -->
+                <th>Province</th>
+                <th>City/Municipality</th>
+                <th>Name</th>
+                <th>Designation</th>
+                <th>Year<br><sub>(YYYY)</sub></th>
+            </tr>
+
+
+            <% for(let data of datas) {%>
+                <tr>
+                    <td>
+                        <%=data.designationLocationProvince%>
+                    </td>
+                    <td>
+                        <%=data.designationLocationCity%>
+                    </td>
+                    <td>
+                        <%=data.designationGivenName%>
+                            <%=data.designationMiddleName%>
+                                <%=data.designationSurName%>
+                    </td>
+
+                    <td>
+                        <%=data.designationPostion%>
+                    </td>
+                    <td style= "width: 5%; text-align: center">
+                        <%=data.designationYear===null ? "xxxx" : data.designationYear%>
+                    </td>
+                    <td style= "text-align: center"><a href="designation/<%=data._id%>">
+                        <svg width="15" height="15" viewBox="0 0 512 512"><path d="M497.9 142.1l-46.1 46.1c-4.7 4.7-12.3 4.7-17 0l-111-111c-4.7-4.7-4.7-12.3 0-17l46.1-46.1c18.7-18.7 49.1-18.7 67.9 0l60.1 60.1c18.8 18.7 18.8 49.1 0 67.9zM284.2 99.8L21.6 362.4.4 483.9c-2.9 16.4 11.4 30.6 27.8 27.8l121.5-21.3 262.6-262.6c4.7-4.7 4.7-12.3 0-17l-111-111c-4.8-4.7-12.4-4.7-17.1 0zM124.1 339.9c-5.5-5.5-5.5-14.3 0-19.8l154-154c5.5-5.5 14.3-5.5 19.8 0s5.5 14.3 0 19.8l-154 154c-5.5 5.5-14.3 5.5-19.8 0zM88 424h48v36.3l-64.5 11.3-31.1-31.1L51.7 376H88v48z"/></svg>
+                    </a>
+                </tr>
+                <%}%>
+        </table>
+
+        <script>
+            function searchData() {
+                //https://stackoverflow.com/questions/60054573/multiple-filter-with-dropdown-using-javascript-in-html-table
+                // https://www.w3schools.com/howto/howto_js_filter_table.asp
+                const table = document.getElementById("designationList");
+                const tr = table.getElementsByTagName("tr");
+
+                var searchProvince = document.getElementById("searchProvince").value.toUpperCase();
+                var searchCity = document.getElementById("searchCity").value.toUpperCase();
+                var searchName = document.getElementById("searchName").value.toUpperCase();
+                var searchDesignation = document.getElementById("searchDesignation").value.toUpperCase();
+                var searchYear = document.getElementById("searchYear").value.toUpperCase();
+
+                // var rowCountry = tr[i].getElementsByTagName("td")[1].textContent.toUpperCase();
+                // var rowAge = tr[i].getElementsByTagName("td")[2].textContent.toUpperCase();
+                // var rowSalary = tr[i].getElementsByTagName("td")[3].textContent.toUpperCase();
+
+                var input, filter, td, i, txtValue;
+                // name = document.getElementById("searchProvince").value.toUpperCase();
+                for (i = 2; i < tr.length; i++) {
+                    // console.log(i, 1, tr[0].getElementsByTagName("td")[0])
+                    // console.log(i, 2, tr[1].getElementsByTagName("td")[0])
+                    rowProvince = tr[i].getElementsByTagName("td")[0].textContent.toUpperCase();
+                    rowCity = tr[i].getElementsByTagName("td")[1].textContent.toUpperCase();
+                    rowName = tr[i].getElementsByTagName("td")[2].textContent.toUpperCase();
+                    rowDesignation = tr[i].getElementsByTagName("td")[3].textContent.toUpperCase();
+                    rowYear = tr[i].getElementsByTagName("td")[4].textContent.toUpperCase();
+                    var isDiplay = true;
+
+                    if (rowProvince) {
+                        if (rowProvince.indexOf(searchProvince) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+
+                    if (rowCity && tr[i].style.display != "none") {
+                        if (rowCity.indexOf(searchCity) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+
+                    if (rowName && tr[i].style.display != "none") {
+                        if (rowName.indexOf(searchName) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+
+                    if (rowDesignation && tr[i].style.display != "none") {
+                        if (rowDesignation.indexOf(searchDesignation) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+
+                    if (rowYear && tr[i].style.display != "none") {
+                        if (rowYear.indexOf(searchYear) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+        </script>
 </body>
 
 </html>

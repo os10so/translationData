@@ -13,7 +13,7 @@
 <body>
 
     <%- include('partials/header.ejs') %>
-    <!-- <div class="navBar">
+        <!-- <div class="navBar">
         <nav>
             <ul>
                 <li><a href="/">Home</a></li>
@@ -26,64 +26,65 @@
     </div> -->
 
 
-    <h1>SUBMIT NEW LOCAL REGISTRAR OFFICIALS</h1>
-    <div action="/designation" method="post" class="formbg">
-        <br>
-        <div class="stats">LOCATION</div>
-        <div class="row">
-            <label for="designationLocationProvince">Province</label>
-            <div type="text" id="designationLocationProvince" name="designationLocationProvince" class="boxData">
-                <%=data.designationLocationProvince%>
-            </div>
-            <label for="designationLocationCity">City / Municipality</label>
-            <div type="text" id="designationLocationCity" name="designationLocationCity" class="boxData">
-                <%=data.designationLocationCity%>
-            </div>
-        </div>
-
-        <br>
-        <div class="stats">NAME</div>
-        <div class="row">
-            <label for="designationGivenName">Given Name</label>
-            <div type="text" id="designationGivenName" name="designationGivenName" class="boxData">
-                <%=data.designationGivenName%>
-            </div>
-            <label for="designationMiddleName">Middle Name</label>
-            <div type="text" id="designationMiddleName" name="designationMiddleName" class="boxData">
-                <%=data.designationMiddleName%>
-            </div>
-            <label for="designationSurName">Surname</label>
-            <div type="text" id="designationSurName" name="designationSurName" class="boxData">
-                <%=data.designationSurName%>
-            </div>
-
-
+        <h1>SUBMIT NEW LOCAL REGISTRAR OFFICIALS</h1>
+        <div action="/designation" method="post" class="formbg">
             <br>
-            <div class="stats">Position / Designation</div>
+            <div class="stats">LOCATION</div>
             <div class="row">
-                <label for="designationPostion">Position / Designation</label>
-                <div type="text" id="designationPostion" name="designationPostion" class="boxData">
-                    <%=data.designationPostion%>
+                <label for="designationLocationProvince">Province</label>
+                <div type="text" id="designationLocationProvince" name="designationLocationProvince" class="boxData">
+                    <%=data.designationLocationProvince%>
+                </div>
+                <label for="designationLocationCity">City / Municipality</label>
+                <div type="text" id="designationLocationCity" name="designationLocationCity" class="boxData">
+                    <%=data.designationLocationCity%>
                 </div>
             </div>
-            
+
             <br>
-            <div class="stats"><label>DATE</label></div>
+            <div class="stats">NAME</div>
             <div class="row">
-                <label> YEAR <sub>(YYYY)</sub></label>
-                <label for="designationYear"></label>
-                <div type="number" id="designationYear" name="designationYear" class="boxData" min="1920">
-                    <%=data.designationYear%>
+                <label for="designationGivenName">Given Name</label>
+                <div type="text" id="designationGivenName" name="designationGivenName" class="boxData">
+                    <%=data.designationGivenName%>
                 </div>
+                <label for="designationMiddleName">Middle Name</label>
+                <div type="text" id="designationMiddleName" name="designationMiddleName" class="boxData">
+                    <%=data.designationMiddleName%>
+                </div>
+                <label for="designationSurName">Surname</label>
+                <div type="text" id="designationSurName" name="designationSurName" class="boxData">
+                    <%=data.designationSurName%>
+                </div>
+
+
+                <br>
+                <div class="stats">Position / Designation</div>
+                <div class="row">
+                    <label for="designationPostion">Position / Designation</label>
+                    <div type="text" id="designationPostion" name="designationPostion" class="boxData">
+                        <%=data.designationPostion%>
+                    </div>
+                </div>
+
+                <br>
+                <div class="stats"><label>DATE</label></div>
+                <div class="row">
+                    <label> YEAR <sub>(YYYY)</sub></label>
+                    <label for="designationYear"></label>
+                    <%for( let index=0; index < data.designationYear.length; index++){%>
+                        <div type="number" id="designationYear" name="designationYear" class="boxData" min="1920"><%=data.designationYear[index]%>
+                        </div>
+                        <%}%> 
 
                 <a href="/designation/<%=data._id %>/edit"><button class="submitbutton">EDIT</button></a>
 
                 <form action="/designation/<%= data._id %>?_method=delete" method="post">
-                    <button class="submitbutton">DELETE</button>
+                <button class="submitbutton">DELETE</button>
                 </form>
                 <!-- <button> CLEAR </button> -->
+                </div>
             </div>
-        </div>
 </body>
 
 </html>
